@@ -8,12 +8,15 @@ fi
 ############
 ### ENVS ###
 ############
-export ZSH=$HOME/my_dotfile_config/zsh
+export DOTFILE_CONFIG_HOME=$HOME/my_dotfile_config
+
+export ZSH_HOME=$DOTFILE_CONFIG_HOME/zsh
+export ZSH_PLUGINS_FOLDER=$ZSH_HOME/plugins
+export ZSH_THEMES_FOLDER=$ZSH_HOME/themes
 
 #############
 ## HISTORY ##
 #############
-
 export HISTFILE=$ZSH/.zsh_history
 
 # How many commands zsh will load to memory
@@ -28,12 +31,12 @@ setopt HIST_IGNORE_ALL_DUPS
 # History won't show duplicates on search
 setopt HIST_FIND_NO_DUPS
 
-############
-### P10K ###
-############
-export P10K_PATH=$HOME/my_dotfile_config/p10k
+#############
+## PLUGINS ##
+#############
+source $ZSH_PLUGINS_FOLDER/.zsh_plugins
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f $P10K_PATH/.p10k.zsh ]] || source $P10K_PATH/.p10k.zsh
+#############
+### THEME ###
+#############
+source $ZSH_THEMES_FOLDER/.zsh_theme

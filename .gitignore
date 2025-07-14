@@ -63,3 +63,12 @@ tmp.*
 # ZSH
 **/.zsh_history
 **/.zcompdump
+
+# ZSH Plugins
+/zsh/plugins/*
+!/zsh/plugins/.zsh_plugins
+
+# ZSH Themes
+/zsh/themes/*
+!/zsh/themes/.zsh_theme
+!/zsh/themes/p10k/.p10k.zsh
