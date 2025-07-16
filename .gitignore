@@ -66,11 +66,11 @@ tmp.*
 
 # ZSH Plugins
 /zsh/plugins/*
-!/zsh/plugins/.zsh_plugins
+!/zsh/plugins/.zsh_plugins.zsh
 
 # ZSH Themes
 /zsh/themes/*
-!/zsh/themes/.zsh_theme
+!/zsh/themes/.zsh_theme.zsh
 !/zsh/themes/p10k/
 /zsh/themes/p10k/*
 !/zsh/themes/p10k/.p10k.zsh

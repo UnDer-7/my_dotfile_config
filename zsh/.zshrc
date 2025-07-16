@@ -22,6 +22,8 @@ export DOTFILE_CONFIG_HOME=$HOME/my_dotfile_config
 export ZSH_HOME=$DOTFILE_CONFIG_HOME/zsh
 export ZSH_PLUGINS_FOLDER=$ZSH_HOME/plugins
 export ZSH_THEMES_FOLDER=$ZSH_HOME/themes
+export ZSH_FUNCTIONS_FOLDER=$ZSH_HOME/functions
+export ZSH_ALIAS_FOLDER=$ZSH_HOME/alias
 
 #############
 ## HISTORY ##
@@ -43,42 +45,25 @@ setopt HIST_FIND_NO_DUPS
 #############
 ## PLUGINS ##
 #############
-source $ZSH_PLUGINS_FOLDER/.zsh_plugins
+source "$ZSH_PLUGINS_FOLDER"/.zsh_plugins.zsh
 
 #############
 ### THEME ###
 #############
-source $ZSH_THEMES_FOLDER/.zsh_theme
+source "$ZSH_THEMES_FOLDER"/.zsh_theme.zsh
 
 #############
 # FUNCTIONS #
 #############
+# Automatically load all function files from the functions directory
+for function_file in "$ZSH_FUNCTIONS_FOLDER"/*.zsh; do
+  source "$function_file"
+done
 
-# Directory function ('d') from oh-my-zsh
-# https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/directories.zsh
-
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
-
-alias -- -='cd -'
-alias 0='cd -0'
-alias 1='cd -1'
-alias 2='cd -2'
-alias 3='cd -3'
-alias 4='cd -4'
-alias 5='cd -5'
-alias 6='cd -6'
-alias 7='cd -7'
-alias 8='cd -8'
-alias 9='cd -9'
-
-function d () {
-  if [[ -n $1 ]]; then
-    dirs "$@"
-  else
-    dirs -v | head -n 10
-  fi
-}
-compdef _dirs d
+#############
+### ALIAS ###
+#############
+# Automatically load all alias files from the alias directory
+for alias_file in "$ZSH_ALIAS_FOLDER"/*.zsh; do
+  source "$alias_file"
+done
