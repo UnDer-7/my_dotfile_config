@@ -63,6 +63,7 @@ alias -g .....='../../../..'
 alias -g ......='../../../../..'
 
 alias -- -='cd -'
+alias 0='cd -0'
 alias 1='cd -1'
 alias 2='cd -2'
 alias 3='cd -3'
