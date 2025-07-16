@@ -40,3 +40,17 @@ source $ZSH_PLUGINS_FOLDER/.zsh_plugins
 ### THEME ###
 #############
 source $ZSH_THEMES_FOLDER/.zsh_theme
+
+#############
+# FUNCTIONS #
+#############
+
+# Directory function from oh-my-zsh
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/directories.zsh
+function d () {
+  if [[ -n $1 ]]; then
+    dirs "$@"
+  else
+    dirs -v | head -n 10
+  fi
+}
