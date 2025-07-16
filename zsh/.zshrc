@@ -1,9 +1,8 @@
-# --- Related to 'd' function ---
+# --- Related to 'd' function, must be before p10k ---
 setopt AUTO_CD
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_MINUS
-
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -61,5 +60,3 @@ function d () {
     dirs -v | head -n 10
   fi
 }
-# completions
-compdef _dirs d
