@@ -1,3 +1,10 @@
+# --- Related to 'd' function ---
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_MINUS
+
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -45,7 +52,7 @@ source $ZSH_THEMES_FOLDER/.zsh_theme
 # FUNCTIONS #
 #############
 
-# Directory function from oh-my-zsh
+# Directory function ('d') from oh-my-zsh
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/directories.zsh
 function d () {
   if [[ -n $1 ]]; then
@@ -54,3 +61,5 @@ function d () {
     dirs -v | head -n 10
   fi
 }
+# completions
+compdef _dirs d
