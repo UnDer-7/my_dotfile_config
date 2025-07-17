@@ -7,7 +7,7 @@ alias gc="git commit -v"
 
 # Branches
 alias gb="git branch"
-aliss gcb="git checkout -b"
+alias gcb="git checkout -b"
 alias gco="git checkout"
 alias gbd="git branch -D"
 
