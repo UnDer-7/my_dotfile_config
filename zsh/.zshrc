@@ -34,10 +34,10 @@ export VIM_HOME=$DOTFILE_CONFIG_HOME/vim
 #############
 export VIMINIT="source $VIM_HOME/.vimrc"
 
-#############
-## HISTORY ##
-#############
-export HISTFILE=$ZSH/.zsh_history
+###############
+# ZSH OPTIONS #
+###############
+export HISTFILE=$ZSH_HOME/.zsh_history
 
 # How many commands zsh will load to memory
 HISTSIZE=1000
@@ -45,11 +45,15 @@ HISTSIZE=1000
 # How many commands history will save on file
 SAVEHIST=1000
 
-# History won't save duplicates
-setopt HIST_IGNORE_ALL_DUPS
-
 # History won't show duplicates on search
 setopt HIST_FIND_NO_DUPS
+
+setopt EXTENDED_HISTORY       # record timestamp of command in HISTFILE
+setopt HIST_EXPIRE_DUPS_FIRST # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt HIST_IGNORE_DUPS       # ignore duplicated commands history list
+setopt HIST_IGNORE_SPACE      # ignore commands that start with space
+setopt HIST_VERIFY            # show command with history expansion to user before running it
+setopt SHARE_HISTORY          # share command history data
 
 #############
 ## PLUGINS ##
