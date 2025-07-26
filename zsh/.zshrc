@@ -80,3 +80,15 @@ done
 for alias_file in "$ZSH_ALIAS_FOLDER"/*.zsh; do
   source "$alias_file"
 done
+
+###################
+# VERSION MANAGER #
+###################
+# FNM: Node.js version manager
+export PATH="{{ ansible_env.HOME }}/.local/share/fnm:$PATH"
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
+
+# SdkMan: Java, Maven, ... version manager
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
