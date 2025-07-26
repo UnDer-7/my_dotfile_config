@@ -1,5 +1,7 @@
 alias g="git"
 
+alias grhh="git reset --hard"
+
 # Commit
 alias ga="git add"
 alias gaa="git add --all"
