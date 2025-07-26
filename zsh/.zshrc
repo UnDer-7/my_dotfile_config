@@ -85,7 +85,7 @@ done
 # VERSION MANAGER #
 ###################
 # FNM: Node.js version manager
-export PATH="{{ ansible_env.HOME }}/.local/share/fnm:$PATH"
+export PATH="$HOME/.local/share/fnm:$PATH"
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 
 # SdkMan: Java, Maven, ... version manager
