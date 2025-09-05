@@ -19,6 +19,9 @@ fi
 ############
 export DOTFILE_CONFIG_HOME=$HOME/my_dotfile_config
 
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 # ZSH
 export ZSH_HOME=$DOTFILE_CONFIG_HOME/zsh
 export ZSH_PLUGINS_FOLDER=$ZSH_HOME/plugins
