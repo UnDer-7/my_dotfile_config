@@ -22,6 +22,42 @@ export DOTFILE_CONFIG_HOME=$HOME/my_dotfile_config
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+# Load machine-local envs (not tracked by git)
+if [[ ! -f "$HOME/.zsh_local" ]]; then
+    echo "[zshrc] ~/.zsh_local not found — creating empty file"
+    cat > "$HOME/.zsh_local" << 'EOF'
+# .zsh_local | Machine-specific environment variables
+# Use this file for envs that only make sense on this machine (e.g. work-specific paths, tools, configs).
+# This file is NOT tracked by git. For secrets, passwords or API tokens, use ~/.zsh_secrets instead.
+# Permissions: 644 (owner: read/write | group: read | others: read)
+#
+# Example:
+#   export JAVA_HOME=/usr/lib/jvm/java-21
+#   export WORK_API_URL=https://internal.company.com/api
+EOF
+    chmod 644 "$HOME/.zsh_local"
+fi
+source "$HOME/.zsh_local"
+
+# Load local secrets (not tracked by git)
+if [[ ! -f "$HOME/.zsh_secrets" ]]; then
+    echo "[zshrc] ~/.zsh_secrets not found — creating empty file with restricted permissions (600)"
+    cat > "$HOME/.zsh_secrets" << 'EOF'
+# .zsh_secrets — Secret environment variables
+# Use this file for API tokens, passwords and any sensitive credentials.
+# This file is NOT tracked by git. For non-sensitive machine-specific envs, use ~/.zsh_local instead.
+# Never share or commit this file.
+# Permissions: 600 (owner: read/write | group: none | others: none) — only your user can read this file.
+#
+# Example:
+#   export ANTHROPIC_API_KEY=sk-ant-...
+#   export SONAR_TOKEN=meu_token
+#   export DB_PASSWORD=senha123
+EOF
+    chmod 600 "$HOME/.zsh_secrets"
+fi
+source "$HOME/.zsh_secrets"
+
 # ZSH
 export ZSH_HOME=$DOTFILE_CONFIG_HOME/zsh
 export ZSH_PLUGINS_FOLDER=$ZSH_HOME/plugins
