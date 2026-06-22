@@ -22,23 +22,6 @@ export DOTFILE_CONFIG_HOME=$HOME/my_dotfile_config
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-# Load machine-local envs (not tracked by git)
-if [[ ! -f "$HOME/.zsh_local" ]]; then
-    echo "[zshrc] ~/.zsh_local not found — creating empty file"
-    cat > "$HOME/.zsh_local" << 'EOF'
-# .zsh_local | Machine-specific environment variables
-# Use this file for envs that only make sense on this machine (e.g. work-specific paths, tools, configs).
-# This file is NOT tracked by git. For secrets, passwords or API tokens, use ~/.zsh_secrets instead.
-# Permissions: 644 (owner: read/write | group: read | others: read)
-#
-# Example:
-#   export JAVA_HOME=/usr/lib/jvm/java-21
-#   export WORK_API_URL=https://internal.company.com/api
-EOF
-    chmod 644 "$HOME/.zsh_local"
-fi
-source "$HOME/.zsh_local"
-
 # Load local secrets (not tracked by git)
 if [[ ! -f "$HOME/.zsh_secrets" ]]; then
     echo "[zshrc] ~/.zsh_secrets not found — creating empty file with restricted permissions (600)"
@@ -119,6 +102,26 @@ done
 for alias_file in "$ZSH_ALIAS_FOLDER"/*.zsh; do
   source "$alias_file"
 done
+
+# Load machine-local overrides (not tracked by git)
+# Sourced after plugins/aliases/functions so it can override dotfiles defaults.
+if [[ ! -f "$HOME/.zsh_local" ]]; then
+    echo "[zshrc] ~/.zsh_local not found — creating empty file"
+    cat > "$HOME/.zsh_local" << 'EOF'
+# .zsh_local — Machine-specific zsh config (not tracked by git)
+# Sourced AFTER the main .zshrc, so anything here overrides dotfiles defaults.
+# Use for: aliases, functions, exports, PATH changes, or any zsh config specific to this machine.
+# For secrets/tokens, use ~/.zsh_secrets instead.
+# Permissions: 644 (owner: read/write | group: read | others: read)
+#
+# Example:
+#   export JAVA_HOME=/usr/lib/jvm/java-21
+#   alias gs='git status'
+#   work_vpn() { sudo openvpn ~/work.ovpn }
+EOF
+    chmod 644 "$HOME/.zsh_local"
+fi
+source "$HOME/.zsh_local"
 
 ###################
 # VERSION MANAGER #
